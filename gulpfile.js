@@ -1,8 +1,9 @@
 var gulp = require('gulp');
-var jsFiles = ['*.js', 'src/**/*.js'];
 var jshint = require('gulp-jshint');
 var jscs = require('gulp-jscs');
 var nodemon = require('gulp-nodemon');
+
+var jsFiles = ['*.js', 'src/**/*.js'];
 
 gulp.task('style', function () {
     return gulp.src(jsFiles)
@@ -18,9 +19,13 @@ gulp.task('inject', function () {
     var wiredep = require('wiredep').stream;
     var inject = require('gulp-inject');
 
-    var injectSrc = gulp.src(['./public/css/*.css', './public/js/*.js'], {read: false});
+    var injectSrc = gulp.src(['./public/css/*.css', './public/js/*.js'],
+        {
+            read: false
+        });
+
     var injectOptions = {
-        ignorePath: './public'
+        ignorePath: '/public'
     };
 
     var options = {
@@ -29,10 +34,10 @@ gulp.task('inject', function () {
         ignorePath: '../../public'
     };
 
-    return gulp.src('./src/views/*.html')
+    return gulp.src('./src/views/layouts/*.hbs')
         .pipe(wiredep(options))
         .pipe(inject(injectSrc, injectOptions))
-        .pipe(gulp.dest('./src/views'));
+        .pipe(gulp.dest('./src/views/layouts/'));
 });
 
 gulp.task('serve', ['style', 'inject'], function () {
