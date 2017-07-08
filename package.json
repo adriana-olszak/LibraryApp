@@ -14,7 +14,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.3",
-    "express-handlebars": "^3.0.0"
+    "express-handlebars": "^3.0.0",
+    "mongodb": "^2.2.30"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
